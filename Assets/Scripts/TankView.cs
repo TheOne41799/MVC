@@ -13,6 +13,8 @@ public class TankView : MonoBehaviour
 
     [SerializeField] private Rigidbody rb;
 
+    [SerializeField] private MeshRenderer[] childMeshRenderers;
+
 
     private void Start()
     {
@@ -30,11 +32,8 @@ public class TankView : MonoBehaviour
     private void Update()
     {
         Input();
-
-        if (movementInput != 0) tankController.Move(movementInput, tankController.GetTankModel().movementSpeed);
-        if (movementInput != 0 && rotationInput != 0) tankController.Rotate(rotationInput, tankController.GetTankModel().rotationSpeed);
-    }
-
+        MovementandRotation();
+    }   
 
     private void Input()
     {
@@ -42,6 +41,11 @@ public class TankView : MonoBehaviour
         rotationInput = UnityEngine.Input.GetAxis("Horizontal");
     }
 
+    private void MovementandRotation()
+    {
+        if (movementInput != 0) tankController.Move(movementInput, tankController.GetTankModel().movementSpeed);
+        if (movementInput != 0 && rotationInput != 0) tankController.Rotate(rotationInput, tankController.GetTankModel().rotationSpeed);
+    }
 
     public void SetTankController(TankController controller)
     {
@@ -52,5 +56,14 @@ public class TankView : MonoBehaviour
     public Rigidbody GetRigidbody()
     {
         return rb; 
+    }
+
+
+    public void ChangeColor(Material color)
+    {
+        foreach(MeshRenderer meshRenderer in childMeshRenderers)
+        {
+            meshRenderer.material = color;
+        }
     }
 }

@@ -335,6 +335,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3084291258695738333}
+  childMeshRenderers:
+  - {fileID: 2142935989244383661}
+  - {fileID: 2142935989244383659}
+  - {fileID: 2142935989244383653}
+  - {fileID: 2142935989244383663}
 --- !u!54 &3084291258695738333
 Rigidbody:
   m_ObjectHideFlags: 0
