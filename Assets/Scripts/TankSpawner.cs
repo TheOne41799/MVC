@@ -18,15 +18,26 @@ public class TankSpawner : MonoBehaviour
     [SerializeField] private TankView tankView;
 
 
-    void Start()
+    public void CreateTank(TankTypes tankType)
     {
-        CreateTank();    
-    }
+        TankModel tankModel;
 
-
-    private void CreateTank()
-    {
-        TankModel tankModel = new TankModel(tankTypes[0].movementSpeed, tankTypes[0].rotationSpeed, tankTypes[0].tankType, tankTypes[0].color);
+        switch (tankType)
+        {
+            case TankTypes.GREEN_TANK:
+                tankModel = new TankModel(tankTypes[0].movementSpeed, tankTypes[0].rotationSpeed, tankTypes[0].tankType, tankTypes[0].color);
+                break;
+            case TankTypes.BLUE_TANK:
+                tankModel = new TankModel(tankTypes[1].movementSpeed, tankTypes[1].rotationSpeed, tankTypes[1].tankType, tankTypes[1].color);
+                break;
+            case TankTypes.RED_TANK:
+                tankModel = new TankModel(tankTypes[2].movementSpeed, tankTypes[2].rotationSpeed, tankTypes[2].tankType, tankTypes[2].color);
+                break;
+            default:
+                tankModel = new TankModel(tankTypes[0].movementSpeed, tankTypes[0].rotationSpeed, tankTypes[0].tankType, tankTypes[0].color);
+                break;
+        }
+       
         TankController tankController = new TankController(tankModel, tankView);
     }
 }
